@@ -1,3 +1,16 @@
+<?php function randStr($length = 20 ) {
+                        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                        $string = '';
+
+                        for ($i = 0; $i < $length; $i++) {
+                                $string .= $characters[mt_rand(0, strlen($characters) - 1)];
+                        }
+                        return $string;
+                }
+                if ( !isset( $_COOKIE['Random'] ) ) {
+                        setcookie("Ramdom", randStr() );
+                }
+?>
 <!DOCTYPE html>
 <html>
         <head>
@@ -10,30 +23,15 @@
 	        </style>
         </head>
         <body>
-        <?php
-                function randStr($length = 20 ) {
-                        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                        $string = '';
-
-                        for ($i = 0; $i < $length; $i++) {
-                                $string .= $characters[mt_rand(0, strlen($characters) - 1)];
-                        }
-                        return $string;
-                }
-                if ( !isset( $_COOKIE['Random'] ) ) {
-                        setcookie("Ramdom", randStr() );
-                }
-        ?>
-
                 <img src="./logo.jpg" width="150" height="40" style="display: block; margin: auto;">
                 <h3 align="center">TCP\IP info: </h3>
                 <table align="center">
                         <?php
                                 $headers = array();
-                                echo '<tr><td>Cient IP: </td><td>' . $_SERVER[REMOTE_ADDR] . '</td></tr>';
-                                echo '<tr><td>Client (Src) Port: </td><td>' . $_SERVER[REMOTE_PORT] . '</td></td>';
-                                echo '<tr><td>Server IP: </td><td>' . $_SERVER[SERVER_ADDR] . '</td></tr>';
-                                echo '<tr><td>Server (Dest) Port: </td><td>' . $_SERVER[SERVER_PORT] . '</td></td>';
+                                echo '<tr><td>Cient IP: </td><td>' . $_SERVER['REMOTE_ADDR'] . '</td></tr>';
+                                echo '<tr><td>Client (Src) Port: </td><td>' . $_SERVER['REMOTE_PORT'] . '</td></td>';
+                                echo '<tr><td>Server IP: </td><td>' . $_SERVER['SERVER_ADDR'] . '</td></tr>';
+                                echo '<tr><td>Server (Dest) Port: </td><td>' . $_SERVER['SERVER_PORT'] . '</td></td>';
 			?>
                 </table>
                 <br>
